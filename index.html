@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Voice of English</title>
+<style>
+  /* Reset & base styles */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  body {
+    background: linear-gradient(135deg, #4b6cb7, #182848);
+    color: #f0f0f0;
+    min-height: 100vh;
+    display: flex; 
+    flex-direction: column;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  /* Navbar */
+  nav {
+    background: rgba(24, 40, 72, 0.95);
+    padding: 1rem 3rem;
+    display: flex; justify-content: space-between; align-items: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+  nav.scrolled {
+    background: #122244;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.8);
+  }
+  nav .logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #ffd700;
+    cursor: default;
+    user-select: none;
+  font-family: Arial, Helvetica, sans-serif;
+  animation: Waves Coming Out of Mic / Letter V;
+
+  }
+  logo-icon {
+  font-size: 2.2rem;
+  animation: glowIcon 2s infinite alternate;
+}
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+  nav ul li {
+    font-weight: 600;
+  }
+  nav ul li a {
+    text-decoration: none;
+    color: #eee;
+    font-size: 1.1rem;
+    position: relative;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+  }
+  nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: #ffd700;
+    transition: width 0.3s ease;
+  }
+  nav ul li a:hover {
+    color: #ffd700;
+  }
+  nav ul li a:hover::after {
+    width: 100%;
+  }
+
+  /* Hero Section */
+  .hero {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero h1 {
+    font-size: 3.8rem;
+    font-weight: 900;
+    color: #4a4cb3;
+    text-shadow: 0 0 5px #ffd700cc;
+    animation: glow 3s ease-in-out infinite alternate;
+    max-width: 900px;
+    z-index: 1;
+  }
+  @keyframes glow {
+    from {
+      text-shadow: 0 0 10px #ffd700aa, 0 0 20px #ffd700bb, 0 0 30px #ffd700cc;
+    }
+    to {
+      text-shadow: 0 0 20px #fff7aa, 0 0 30px #fff7bb, 0 0 40px #fff7cc;
+    }
+  }
+  .hero p {
+    margin: 1.5rem 0 4rem 0;
+    font-size: 1.4rem;
+    max-width: 700px;
+    color: #eee;
+    line-height: 1.6;
+    z-index: 1;
+  }
+  .hero-buttons {
+    display: flex;
+    gap: 2.5rem;
+    z-index: 1;
+  }
+  .btn {
+    background: #ffd700;
+    color: #182848;
+    font-weight: 700;
+    padding: 1.2rem 3rem;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.3rem;
+    box-shadow: 0 6px 20px #ffd700aa;
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .btn:hover {
+    transform: scale(1.15);
+    box-shadow: 0 12px 35px #fff7aa;
+  }
+  /* Subtle animated background shapes */
+  .hero::before, .hero::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.5;
+    animation: float 8s ease-in-out infinite alternate;
+    z-index: 0;
+  }
+  .hero::before {
+    width: 350px; height: 350px;
+    background: #ffd700aa;
+    top: 20%;
+    left: 10%;
+  }
+  .hero::after {
+    width: 400px; height: 400px;
+    background: #ffffff55;
+    bottom: 10%;
+    right: 15%;
+    animation-delay: 4s;
+  }
+  @keyframes float {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(30px); }
+  }
+
+  /* Features Section */
+  .features {
+    background: #182848;
+    padding: 4rem 2rem 6rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+  }
+  .feature-item {
+    background: #2a3b6e;
+    border-radius: 18px;
+    padding: 2.5rem;
+    flex: 1 1 280px;
+    max-width: 350px;
+    box-shadow: 0 0 25px #182848cc inset;
+    transition: background 0.3s ease, transform 0.3s ease;
+    cursor: default;
+  }
+  .feature-item:hover {
+    background: #3f5499;
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px #2a3b6ecc;
+  }
+  .feature-icon {
+    font-size: 4rem;
+    color: #ffd700;
+    margin-bottom: 1.2rem;
+    text-align: center;
+  }
+  .feature-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 1.2rem;
+    text-align: center;
+    color: #fff7aa;
+  }
+  .feature-desc {
+    font-size: 1.1rem;
+    color: #eee;
+    line-height: 1.7;
+    text-align: center;
+  }
+
+  /* Testimonials Section */
+  .testimonials {
+    background: #122244;
+    padding: 5rem 2rem 6rem;
+    text-align: center;
+  }
+  .testimonials h2 {
+    font-size: 2.8rem;
+    color: #ffd700;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 10px #ffd700aa;
+  }
+  .testimonial-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2.5rem;
+  }
+  .testimonial-card {
+    background: #1e2f65;
+    padding: 2rem;
+    border-radius: 15px;
+    max-width: 350px;
+    box-shadow: 0 5px 15px #000a;
+    font-style: italic;
+    color: #ddd;
+    transition: transform 0.3s ease;
+  }
+  .testimonial-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 30px #ffd700aa;
+  }
+  .testimonial-name {
+    margin-top: 1.5rem;
+    font-weight: 700;
+    color: #ffd700;
+  }
+
+  /* Blog Section */
+  .blog {
+    background: #182848;
+    padding: 4rem 2rem 6rem;
+  }
+  .blog h2 {
+    font-size: 2.8rem;
+    color: #ffd700;
+    text-align: center;
+    margin-bottom: 3rem;
+    text-shadow: 0 0 12px #ffd700aa;
+  }
+  .blog-posts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    justify-content: center;
+  }
+  .blog-post {
+    background: #2a3b6e;
+    border-radius: 15px;
+    max-width: 320px;
+    box-shadow: 0 0 20px #182848cc inset;
+    padding: 1.5rem 1.8rem;
+    transition: background 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+  }
+  .blog-post:hover {
+    background: #3f5499;
+    transform: translateY(-6px);
+  }
+  .blog-post h3 {
+    color: #ffd700;
+    margin-bottom: 1rem;
+  }
+  .blog-post p {
+    color: #eee;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  /* Contact Section */
+  .contact {
+    background: #122244;
+    padding: 5rem 2rem 7rem;
+    text-align: center;
+  }
+  .contact h2 {
+    font-size: 2.8rem;
+    color: #ffd700;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 10px #ffd700aa;
+  }
+  .contact-form {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .contact-form label {
+    display: block;
+    margin-bottom: 0.6rem;
+    font-weight: 700;
+    color: #eee;
+  }
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    margin-bottom: 1.5rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    background: #2a3b6e;
+    color: #f0f0f0;
+    box-shadow: inset 0 0 8px #122244;
+    transition: background 0.3s ease;
+  }
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    outline: none;
+    background: #3f5499;
+  }
+  .contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+  .contact-form button {
+    background: #ffd700;
+    color: #182848;
+    font-weight: 700;
+    padding: 1rem 3rem;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.3rem;
+    border: none;
+    box-shadow: 0 6px 20px #ffd700aa;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .contact-form button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 35px #fff7aa;
+  }
+
+  /* Footer */
+  footer {
+    background: #122244;
+    color: #aaa;
+    text-align: center;
+    padding: 1.8rem 1rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    user-select: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    nav {
+      padding: 1rem 1.5rem;
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+    }
+    .features, .testimonial-cards, .blog-posts {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="logo">
+    <span class="icon">🗣️</span>
+    The Voice of English</div>
+  <ul>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="home">
+  <h1>Master English Fluently with The Voice of English</h1>
+  <p>Unlock your potential with engaging lessons, real conversations, and daily practice tips. Join thousands of learners and start speaking English confidently today!</p>
+  <div class="hero-buttons">
+    <button class="btn">Start Learning</button>
+    <button class="btn">Subscribe Now</button>
+  </div>
+</section>
+
+<section class="features" id="features">
+  <div class="feature-item">
+    <div class="feature-icon">🗣️</div>
+    <div class="feature-title">Interactive Speaking</div>
+    <div class="feature-desc">Practice real-life conversations with our interactive modules designed for every skill level.</div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-icon">📚</div>
+    <div class="feature-title">Comprehensive Lessons</div>
+    <div class="feature-desc">From grammar basics to advanced expressions, our lessons cover everything you need.</div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-icon">🎯</div>
+    <div class="feature-title">Personalized Feedback</div>
+    <div class="feature-desc">Get instant corrections and tips to improve your pronunciation and sentence structure.</div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-icon">📅</div>
+    <div class="feature-title">Daily Practice Plans</div>
+    <div class="feature-desc">Stay motivated with daily exercises and challenges tailored to your progress.</div>
+  </div>
+</section>
+
+<section class="testimonials" id="testimonials">
+  <h2>What Our Learners Say</h2>
+  <div class="testimonial-cards">
+    <div class="testimonial-card">
+      “The Voice of English changed how I learn! The lessons are clear and easy to follow. Highly recommended!”
+      <div class="testimonial-name">- Ali R.</div>
+    </div>
+    <div class="testimonial-card">
+      “I gained confidence speaking English after just a few weeks. The personalized feedback helped me a lot.”
+      <div class="testimonial-name">- Sara K.</div>
+    </div>
+    <div class="testimonial-card">
+      “Best learning platform! The daily practice keeps me motivated, and the teachers are very helpful.”
+      <div class="testimonial-name">- Omar S.</div>
+    </div>
+  </div>
+</section>
+
+<section class="blog" id="blog">
+  <h2>From Our Blog</h2>
+  <div class="blog-posts">
+    <div class="blog-post" tabindex="0">
+      <h3>5 Tips to Improve Your English Speaking Skills</h3>
+      <p>Learn simple daily habits that make a big difference in your fluency and confidence.</p>
+    </div>
+    <div class="blog-post" tabindex="0">
+      <h3>Common Grammar Mistakes to Avoid</h3>
+      <p>Master your grammar with this guide to the most frequent errors learners make.</p>
+    </div>
+    <div class="blog-post" tabindex="0">
+      <h3>How to Practice English When You're Busy</h3>
+      <p>Discover effective techniques to fit language practice into your daily routine.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <h2>Get In Touch</h2>
+  <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you for contacting us! We will get back soon.');">
+    <label for="name">Name</label>
+    <input id="name" type="text" placeholder="Your name" required />
+    
+    <label for="email">Email</label>
+    <input id="email" type="email" placeholder="Your email" required />
+    
+    <label for="message">Message</label>
+    <textarea id="message" placeholder="Write your message here..." required></textarea>
+    
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+<footer>
+  &copy; 2025 The Voice of English. All rights reserved.
+</footer>
+
+<script>
+  // Navbar shadow on scroll
+  window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    if(window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+</script>
+
+</body>
+</html>
